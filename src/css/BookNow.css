@@ -2,11 +2,15 @@
     text-align: center;
     background: var(--primary-color);
     color: var(--text2);
-    padding: 10px 10px;
     margin: 0;
     border: 2px solid var(--secondary-color);
     box-shadow: 4px 4px 0px var(--secondary-color);
+
+    width: fit-content;
+    padding: 5px;
+    
 }
+
 
 #book-now h3 {
 margin: 0;
@@ -18,5 +22,15 @@ font-weight: 400;
     color: var(--text2);
     text-decoration: none;
     
+}
+
+@media only screen and (min-width: 799px) {
+   #book-now {
+    padding: 10px 10px;
+    width: auto;
+   }
+
+    
+
 }
 

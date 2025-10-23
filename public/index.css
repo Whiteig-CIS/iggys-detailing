@@ -21,6 +21,11 @@ body {
     display: none;
 }
 
+.one-small {
+    flex: 1;
+}
+
+
 @media (min-width: 799px) {  /*large resolutions*/
 
     .hide-large {

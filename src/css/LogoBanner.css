@@ -7,8 +7,23 @@ img {
 }
 
 #logo-banner {
-    position: relative;
     display: flex;
+    width: 100%;
+}
+
+#toggle-container, #book-now-small-container {
+    position: relative;
+}
+
+#toggle-nav {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+}
+
+#book-now-small-bttn {
+    position: absolute;
+    right: 10%;
 }
 
 
@@ -24,6 +39,10 @@ img {
 @media only screen and (min-width: 799px) {
     #logo {
         width: 100%;
+    }
+
+    #logo-banner {
+        display: block;
     }
 
     
