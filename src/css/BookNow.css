@@ -9,11 +9,14 @@
 }
 
 #book-now h3 {
-    margin: 0;
+margin: 0;
+font-size: 75%;
+font-weight: 400;
 }
 
-#a {
+#book-now a {
     color: var(--text2);
     text-decoration: none;
+    
 }
 

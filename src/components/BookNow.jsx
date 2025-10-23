@@ -5,7 +5,7 @@ const BookNow = () => {
     return (
        
             <div id="book-now">
-                 <Link to="/booknow">
+                 <Link to="/booking">
                     <h3>BOOK NOW</h3>
                 </Link>
             </div>

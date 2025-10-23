@@ -1,11 +1,11 @@
-import "../css/Booking.css"
-import {Link} from 'react-router-dom';
+import "../css/Booking.css";
 
-const BookNow = () => {
+const Booking = () => {
     return (
        
             <div id="booking">
-                <h1>I'm BookNow</h1>
+                <h1>I'm Booking</h1>
+                
             </div>
        
     );

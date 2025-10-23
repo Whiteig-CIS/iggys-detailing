@@ -3,8 +3,8 @@ import '../css/MainNav.css';
 
 const MainNav = () => {
     return (
-       <nav id="main-nav" class="four columns">
-            <ul class="columns">
+       <nav id="main-nav" className="four columns">
+            <ul className="columns">
                 <li><Link to="/">HOME</Link></li>
                 <li><Link to="/marine">MARINE</Link></li>
                 <li><Link to="/auto">AUTO</Link></li>

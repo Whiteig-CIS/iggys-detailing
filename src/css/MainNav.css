@@ -12,6 +12,7 @@
 }
 
 #main-nav li {
+    display: flex;
     text-align: center;
     justify-items: center;
 }
