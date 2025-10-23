@@ -10,6 +10,7 @@ body {
     font-family: "Almarai", sans-serif !important;
     margin: 0;
     gap: 0;
+    width: 100vw;
 }
 
 .hide-large {

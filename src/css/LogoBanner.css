@@ -5,3 +5,27 @@
 img {
     width: 100%;
 }
+
+#logo-banner {
+    position: relative;
+    display: flex;
+}
+
+
+#logo {
+        width: 30%;
+        /*position: absolute; 
+       /* left: 50%;
+        transform: translateX(-50%); */
+    }
+
+
+
+@media only screen and (min-width: 799px) {
+    #logo {
+        width: 100%;
+    }
+
+    
+
+}

@@ -1,0 +1,6 @@
+#toggle-nav div {
+    width: 20px;
+    height: 0;
+    border: 2px solid var(--secondary-color);
+    margin: 5px;
+}

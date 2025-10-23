@@ -6,7 +6,7 @@ import BookNow from './BookNow';
 const LogoBanner = () => {
     return (
        <div id="logo-banner" className="one">
-            <ToggleNav />
+            <ToggleNav id="toggle" />
 
             <div id="logo"> <img src={logo} alt="Iggy's Detailing" />    </div>
             
