@@ -3,14 +3,14 @@ import '../css/MainNav.css';
 
 const MainNav = () => {
     return (
-       <nav id="main-nav">
-            <ul>
+       <nav id="main-nav" class="four columns">
+            <ul class="columns">
                 <li><Link to="/">HOME</Link></li>
-                <li><Link to="/">MARINE</Link></li>
-                <li><Link to="/">AUTO</Link></li>
-                <li><Link to="/">LOCATIONS</Link></li>
-                <li><Link to="/">PORTFOLIO</Link></li>
-                <li><Link to="/">CONTACT</Link></li>
+                <li><Link to="/marine">MARINE</Link></li>
+                <li><Link to="/auto">AUTO</Link></li>
+                <li><Link to="/locations">LOCATIONS</Link></li>
+                <li><Link to="/portfolio">PORTFOLIO</Link></li>
+                <li><Link to="/contact">CONTACT</Link></li>
             </ul>
        </nav>
     );

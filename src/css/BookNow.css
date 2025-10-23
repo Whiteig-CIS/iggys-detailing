@@ -1,0 +1,19 @@
+#book-now {
+    text-align: center;
+    background: var(--primary-color);
+    color: var(--text2);
+    padding: 10px 10px;
+    margin: 0;
+    border: 2px solid var(--secondary-color);
+    box-shadow: 4px 4px 0px var(--secondary-color);
+}
+
+#book-now h3 {
+    margin: 0;
+}
+
+#a {
+    color: var(--text2);
+    text-decoration: none;
+}
+

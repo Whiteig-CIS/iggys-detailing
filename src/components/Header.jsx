@@ -2,13 +2,14 @@ import {Link} from 'react-router-dom';
 import '../css/Header.css';
 import LogoBanner from './LogoBanner';
 import MainNav from './MainNav';
+import BookNow from './BookNow';
 
 const Header = () => {
     return (
-        <header id="header">
-            <h1> im the header</h1>
+        <header class="columns" id="header">
             <LogoBanner />
             <MainNav />
+            <div id="header-book-bttn-container" class="one"> <BookNow /> </div>
         </header>
     );
 };
