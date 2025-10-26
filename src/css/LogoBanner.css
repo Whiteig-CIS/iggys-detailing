@@ -24,14 +24,12 @@ img {
 #book-now-small-bttn {
     position: absolute;
     right: 10%;
+    top: 23%;
 }
 
 
 #logo {
         width: 30%;
-        /*position: absolute; 
-       /* left: 50%;
-        transform: translateX(-50%); */
     }
 
 

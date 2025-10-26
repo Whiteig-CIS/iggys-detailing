@@ -10,7 +10,7 @@ const LogoBanner = () => {
 
             <div id="logo" className="one-small"> <img src={logo} alt="Iggy's Detailing" />    </div>
             
-            <div id="book-now-small-container" className="hide-large one-small">    <BookNow id="book-now-small-bttn"/>  </div>
+            <div id="book-now-small-container" className="hide-large one-small">  <div id="book-now-small-bttn"><BookNow  /></div>    </div>
        </div>
     );
 };

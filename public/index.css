@@ -4,6 +4,7 @@
     --secondary-color: #000;
     --text1: #fff;
     --text2: #000;
+    --h1-highlight: #5a5a5ab3;
 }
 
 body {
@@ -13,11 +14,22 @@ body {
     width: 100vw;
 }
 
+/*typographgy*/
+p {
+    line-height: 1.75;
+    font-size: 120%;
+    font-weight: 250;
+}
+
 .hide-large {
     display: block;
 }
 
 .hide-small {
+    display: none;
+}
+
+.hide {
     display: none;
 }
 

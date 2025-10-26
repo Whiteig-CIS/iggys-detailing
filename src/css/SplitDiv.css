@@ -1,0 +1,13 @@
+.text-section , .video-section{
+    padding: 30px;
+}
+
+
+
+
+@media only screen and (max-width: 799px)  { 
+   .video-section iframe{
+    width: 100%; 
+}
+
+}

@@ -1,9 +1,11 @@
 import "../css/Marine.css"
+import ImageBanner from "../components/ImageBanner";
 
 const Marine = () => {
     return (
         <div id="marine">
-            <h1>I'm Marine</h1>
+            <ImageBanner title1="MARINE" title2="DETAILING"/>
+            
         </div>
     );
 

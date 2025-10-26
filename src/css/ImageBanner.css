@@ -1,0 +1,19 @@
+#image-banner {
+    position: relative;
+}
+
+#h1-div {
+    position: absolute;
+    left: 5%;
+    top: 25%;
+
+}
+
+.top-h1 , .bottom-h1{
+    font-size: 500%;
+    margin: 0;
+    background: var(--h1-highlight);
+    color: var(--text1);
+}
+
+
