@@ -1,0 +1,75 @@
+:root {
+    --background-color: #fff;
+    --primary-color: #91d3e0;
+    --secondary-color: #000;
+    --text1: #fff;
+    --text2: #000;
+    --h1-highlight: #5a5a5ab3;
+}
+
+body {
+    font-family: "Almarai", sans-serif !important;
+    margin: 0;
+    gap: 0;
+    width: 100vw;
+}
+
+/*typographgy*/
+p {
+    line-height: 1.75;
+    font-size: 120%;
+    font-weight: 250;
+}
+
+.hide-large {
+    display: block;
+}
+
+.hide-small {
+    display: none;
+}
+
+.hide {
+    display: none;
+}
+
+.one-small {
+    flex: 1;
+}
+
+
+@media (min-width: 799px) {  /*large resolutions*/
+
+    .hide-large {
+        display: none;
+    }
+
+    .hide-small {
+        display: block;
+    }
+
+    .columns {
+        display: flex;
+    }
+
+    .one {
+        flex: 1;
+    }
+
+    .two {
+        flex: 2;
+    }
+
+    .three {
+        flex: 3;
+    }
+
+    .four {
+        flex: 4;
+    }
+
+    .six {
+        flex: 6;
+    }
+
+}
