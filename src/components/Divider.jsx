@@ -1,4 +1,4 @@
-
+import "../css/Divider.css"
 import pic from "../images/divider.svg";
 
 

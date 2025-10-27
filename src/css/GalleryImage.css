@@ -1,0 +1,12 @@
+.gallery-image-container {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.gallery-image-container img {
+    width: 100%;
+    display: block;
+    transition: opacity 0.3s ease-in-out;
+}
+

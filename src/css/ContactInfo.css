@@ -1,0 +1,23 @@
+    #contact-info ul {
+                background: none;
+                padding: 0;
+                width: 80%;
+                border-radius: 0px;
+                list-style-type: none;
+        }
+
+        #contact-info li {
+            border-right: none;
+            border-bottom: 1px solid var(--secondary-color);
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        #contact-info a {
+            text-align: left;
+            padding: 10% 0;
+            font-weight: 300;
+            font-size: 2vw;
+            text-decoration: none;
+        }
