@@ -23,6 +23,40 @@ a {
     width: 100%;
 }
 
+@media only screen and (max-width: 799px) {
+    #main-nav li {
+        text-align: left;
+    }
+
+    #main-nav ul {
+        padding-left: 10px;
+        background: var(--nav-small-background);
+    }
+
+    #main-nav a {
+        padding: 5px 0;
+        color: var(--text1);
+        width: 85%;
+        
+        background: var(--h1-highlight);
+        padding-left: 5px;
+        margin: 2px;
+        margin-left: 0;
+        border-radius: 3px;;
+
+    }
+
+    #main-nav ul :first-child  {
+        padding-top: 15px;
+    }
+
+     #main-nav ul :last-child  {
+        padding-bottom: 15px;
+    }
+    
+
+}
+
 /*--------------------------------------*/
 /*--------------------------------------*/
 

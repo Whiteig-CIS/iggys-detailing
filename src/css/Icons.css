@@ -1,4 +1,10 @@
 #icon {
-    width: 50%;
+    width: 80%;
     margin: auto;
+}
+
+@media only screen and (min-width: 799px)  { 
+    #icon {
+        width: 50%;
+    }
 }

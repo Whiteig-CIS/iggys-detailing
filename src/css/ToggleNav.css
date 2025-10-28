@@ -4,3 +4,14 @@
     border: 2px solid var(--secondary-color);
     margin: 5px;
 }
+
+/* Target the burger lines when container has toggle-highlight class */
+.toggle-highlight #toggle-nav div {
+    border-color: white;
+}
+
+.toggle-highlight #toggle-nav {
+    background: var(--nav-small-background);
+    padding: 2px;
+    border-radius: 3px;
+}

@@ -2,6 +2,9 @@
     padding: 30px;
 }
 
+.video-section iframe {
+    width: 100%;
+}
 
 
 
@@ -10,13 +13,7 @@
   /*  width: 100%;  */
 }
 
-.video-section img{
-    width: 100%;
-    height: auto; /* ensure natural aspect ratio */
-    display: block;
-    /* temporary debug border — remove when confirmed working */
-    border: 1px dashed rgba(0,0,0,0.1);
-}
+
 
 .video-section {
     /* provide a fallback minimum height so the image has room to render */
