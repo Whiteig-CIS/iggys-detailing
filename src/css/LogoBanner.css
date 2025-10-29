@@ -2,9 +2,7 @@
     padding: 10px;
 }
 
-img {
-    width: 100%;
-}
+
 
 #logo-banner {
     display: flex;
@@ -28,6 +26,7 @@ img {
 }
 
 
+
 #logo {
         width: 30%;
     }
@@ -37,6 +36,10 @@ img {
 @media only screen and (min-width: 799px) {
     #logo {
         width: 100%;
+    }
+
+    #logo img {
+       min-width: 110px;
     }
 
     #logo-banner {

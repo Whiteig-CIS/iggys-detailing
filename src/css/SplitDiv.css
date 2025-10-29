@@ -1,23 +1,50 @@
+
+
+
+
+
+
+
+@media only screen and (max-width: 799px)  {  /* small resolutions only */
+#iframe-container {
+    width: fit-content;
+    margin: auto;
+}
+
+iframe {
+    width: 100%
+}
+
+}
+
+
+
+
+@media only screen and (min-width: 799px)  { /* large resolutions only */
+
+.video-section iframe{
+    width: 640px;
+    height: 390px;
+}
+
 .text-section , .video-section{
     padding: 30px;
 }
 
-.video-section iframe {
-    width: 100%;
+@media only screen and (max-width: 1300px) { /*between 799px and 1300px*/
+    .video-section iframe{
+    width: 400px;
+    height: 245px;
+}
 }
 
-
-
-@media only screen and (max-width: 799px)  { 
-   .video-section iframe{
-  /*  width: 100%;  */
+@media only screen and (max-width: 1100px) {
+    .video-section iframe{
+    width: 350px;
+    height: 214px;
 }
-
-
-
-.video-section {
-    /* provide a fallback minimum height so the image has room to render */
-    min-height: 160px;
 }
 
 }
+
+

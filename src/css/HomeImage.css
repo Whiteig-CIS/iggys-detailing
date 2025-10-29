@@ -14,7 +14,7 @@
 
 #h1-container {
     position: absolute;
-    top: 25%; 
+    top: 20%; 
     left: 5%;
 }
 
@@ -35,7 +35,8 @@
 @media only screen and (min-width: 799px)  {
 
     #home-image-div #h1-container h1 {
-        font-size: 350%;
+        font-size: 4vw;
+        
     }
 
     #home-image-div img{

@@ -62,12 +62,13 @@ a {
 
  @media only screen and (min-width: 799px) { 
 
-    #main-nav {
+#main-nav {
     align-items: center;
+    max-width: 100%;
 }
 
 #main-nav ul {
-    width: 100%;
+    max-width: 100%;
     padding: 0;
 }
 
@@ -86,7 +87,7 @@ a {
 }
 
 a {
-    font-size: 175%;
+    font-size: 2vw;
     font-weight: 200;
 }
 
