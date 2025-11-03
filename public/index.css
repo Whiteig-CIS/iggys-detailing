@@ -13,7 +13,18 @@ body {
     margin: 0;
     gap: 0;
     width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+
+body {
+    -ms-overflow-style: none;  /* for Internet Explorer, Edge */
+    scrollbar-width: none;     /* for Firefox */
+}
+
+body::-webkit-scrollbar {
+    display: none;             /* for Chrome, Safari, and Opera */
+  }
 
 /*typographgy*/
 p {

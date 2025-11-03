@@ -1,23 +1,49 @@
+#contact-info ul {
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+    margin: 0;
+}
+
+#contact-info a {
+    text-decoration: none;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 150%;
+    font-weight: 100;
+}
+
+#contact-info ul li {
+    width: 70%;
+    margin: auto;
+}
+
+#contact-info ul li:not(:last-child) {
+  border-bottom: 1px solid var(--secondary-color);
+} 
+
+
+
+@media only screen and (min-width: 799px) {
+
+
     #contact-info ul {
-                background: none;
-                padding: 0;
-                width: 80%;
-                border-radius: 0px;
-                list-style-type: none;
-        }
+        margin-top: 10%;
+        width: 80%;
+        border: 1px solid var(--secondary-color);
+        border-radius: 5px;
+    }
 
-        #contact-info li {
-            border-right: none;
-            border-bottom: 1px solid var(--secondary-color);
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
+    #contact-info li {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
 
-        #contact-info a {
-            text-align: left;
-            padding: 10% 0;
-            font-weight: 300;
-            font-size: 2vw;
-            text-decoration: none;
-        }
+    #contact-info a {
+        padding: 10% 0;
+        font-weight: 300;
+        font-size: 2vw;
+        text-decoration: none;
+    }
+}

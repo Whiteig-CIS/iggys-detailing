@@ -1,0 +1,68 @@
+#name-email, #message-div {
+    width: 90%;
+    margin: auto;
+}
+
+#name-email input, #message-div textarea {
+    display: block;
+    padding: 20px;
+    width: 80%;
+    font-size: 150%;
+    margin: 25px 5px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+}
+
+/* leanerd this from chatGPT */
+#name-email input::placeholder, #message-div textarea::placeholder {
+  color: var(--text2); 
+}
+
+#message-div textarea {
+    padding-bottom: 100px;
+}
+
+#submit-div button {
+    display: block;
+    margin-left: 6.5%;
+    padding: 10px 25px;
+    background-color: var(--secondary-color);
+    color: var(--text1);
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    font-size: 100%;
+}
+
+@media only screen and (min-width: 799px) {
+
+    #name-email {
+        width: auto;
+    }
+
+    #name-email input {
+        padding: 10px;
+    }
+
+
+    #contact-form div {
+        margin: 20px;
+    }
+
+    #submit-div {
+        position: relative; 
+    }
+
+    #submit-div button {
+        position: absolute;
+        margin: 0;
+        left: 0%;
+        bottom: 10%;
+    }
+
+    #message-div textarea {
+        width: 90%;
+    }
+
+
+
+}

@@ -14,7 +14,7 @@
 #h1-div {
     position: absolute;
     left: 5%;
-    top: 25%;
+    top: 20%;
 
 }
 
@@ -42,4 +42,11 @@
         font-size: 200%;
     }
 
+}
+
+@media only screen and (min-width: 799px) {
+    #image-banner img {
+        height: 40vh;
+        min-height: 300px;
+    }
 }

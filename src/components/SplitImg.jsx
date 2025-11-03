@@ -9,10 +9,7 @@ const SplitImg = ({title, text, path, direction}) => {
        
       
         <div id="split-image"className="columns">
-            <section
-                
-                className={`three text-section ${direction === "left" ? "hide" : ""}`}
-            >
+            <section className={`three text-section ${direction === "left" ? "hide" : ""}`}>
                 <h1>{title}</h1>
                 <p>{text}</p>
             </section>
