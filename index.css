@@ -5,6 +5,7 @@
     --text1: #fff;
     --text2: #000;
     --h1-highlight: #5a5a5ab3;
+    --nav-small-background: #66a5b1;
 }
 
 body {
@@ -12,7 +13,18 @@ body {
     margin: 0;
     gap: 0;
     width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+
+body {
+    -ms-overflow-style: none;  /* for Internet Explorer, Edge */
+    scrollbar-width: none;     /* for Firefox */
+}
+
+body::-webkit-scrollbar {
+    display: none;             /* for Chrome, Safari, and Opera */
+  }
 
 /*typographgy*/
 p {
