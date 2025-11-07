@@ -86,7 +86,7 @@ a {
     border-right: none;
 }
 
-a {
+#main-nav a {
     font-size: 2vw;
     font-weight: 200;
 }
