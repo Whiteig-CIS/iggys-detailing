@@ -1,6 +1,7 @@
 import "../css/Marine.css"
 import ImageBanner from "../components/ImageBanner";
 import marinePic from "../images/marine.png";
+import PackagePreview from "../components/PackagePreview";
 
 const Marine = () => {
     return (
@@ -12,7 +13,7 @@ const Marine = () => {
             <h1 className="explore"><u>Explore Packages</u></h1>
 
 
-            
+            <PackagePreview />
         </div>
     );
 

@@ -1,26 +1,26 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
-import "./../css/pkg.css";
+import "./../css/Package.css";
 import Package from "../components/Package";
 
-const pkgList = (props) => {
+const PackageList = (props) => {
     const [Packages, setPackages] = useState([]);
 
     //after page has loaded
     useEffect(()=>{
         const loadPackages = async() => {
             const response = await axios.get("https://detailing-server.onrender.com/api/pkgs");
-            setpkgs(response.data.splice(0,props.num));
+            setPackages(response.data.splice(0,props.num));
         };
 
-        loadpackages();
+        loadPackages();
     },[]);
 
     // TODO
     return (
         <div id="package-list" className="columns">
            
-            {pkgs.map((pkg)=>(
+            {Packages.map((pkg)=>(
                 <Package  key={pkg._id} 
                         id={pkg._id}
                         type={pkg.vehicle_type} 
