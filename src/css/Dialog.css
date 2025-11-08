@@ -1,0 +1,47 @@
+
+@import url("https://www.w3schools.com/w3css/4/w3.css");
+
+.w3-modal {
+    background-color: rgba(0, 0, 0, .6);
+}
+
+#dialog-section {
+  position: relative;
+}
+
+#house-dialog,
+#add-dialog,
+#edit-dialog,
+#delete-dialog {
+  display: block;
+}
+
+#delete-content {
+  margin-bottom: 10px;
+}
+
+#dialog-content {
+  margin-left:10px;
+}
+
+#img-prev {
+  max-width: 100%;
+}
+
+#delete-dialog button {
+  margin-right: 10px;
+}
+
+@media only screen and (min-width: 600px) {
+  #img-prev-section {
+    flex: 1;
+  }
+
+  #img-prev {
+    max-width: 100%;
+  }
+
+  #img-upload {
+    flex: 6;
+  }
+}
