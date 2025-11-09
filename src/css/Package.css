@@ -1,3 +1,4 @@
+/*
 #package-list {
     justify-content: space-around;
 }
@@ -21,4 +22,74 @@
     display:block;
     margin:auto;
     border-radius:5px 5px 0 0;
+} 
+*/
+
+/* --- Package list layout --- */
+#package-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  justify-content: center;
 }
+
+/* --- Package card --- */
+.package {
+  --card-bg: #a7d2dc;       /* teal-blue like your mock */
+  --chip-bg: #dbe9ef;
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 16px 16px 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  transition: transform .15s ease, box-shadow .15s ease;
+  cursor: pointer;
+  max-width: 280px;
+  margin: 10px auto;
+}
+
+.package:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+
+/* Image area (fixed ratio like the mock rectangle) */
+.package .package-image {
+  background: var(--chip-bg);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 10px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  margin-bottom: 12px;
+}
+
+/* If you pass a real image */
+.package .package-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Tier title */
+.package h1, .package h3, .package .package-tier {
+  margin: 8px 0 6px;
+  font-size: 1.6rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* Summary line */
+.package .package-summary {
+  margin-top: 8px;
+  text-align: center;
+  font-size: .95rem;
+  opacity: .9;
+}
+
+/* Keep any existing selector you used earlier */
+.package-description { padding: 0 4px; }
+
+
+

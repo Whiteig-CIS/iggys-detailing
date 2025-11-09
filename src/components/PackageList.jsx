@@ -7,15 +7,25 @@ const PackageList = (props) => {
     const [packages, setPackages] = useState([]);
 
     //after page has loaded
-    useEffect(()=>{
-        const loadPackages = async() => {
-            const response = await axios.get("https://detailing-server.onrender.com/api/packages");
-            setPackages(response.data.splice(0,props.num));
-            
-        };
+    useEffect(() => {
+  const loadPackages = async () => {
+    try {
+      const response = await axios.get("https://detailing-server.onrender.com/api/packages");
 
-        loadPackages();
-    },[]);
+      // if only num is provided: 0 → num
+      // if both num and end are provided: num → end
+      const startIndex = props.end ? parseInt(props.num) : 0;
+      const endIndex = props.end ? parseInt(props.end) : parseInt(props.num);
+
+      const sliced = response.data.slice(startIndex, endIndex);
+      setPackages(sliced);
+    } catch (error) {
+      console.error("Error loading packages:", error);
+    }
+  };
+
+  loadPackages();
+}, [props.num, props.end]);
 
     return (
         <div id="package-list" className="columns">

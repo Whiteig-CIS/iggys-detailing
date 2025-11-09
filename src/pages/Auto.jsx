@@ -1,6 +1,7 @@
 import "../css/Auto.css"
 import ImageBanner from "../components/ImageBanner";
 import autoImg from "../images/auto.jpg";
+import PackageList from "../components/PackageList";
 
 const Auto = () => {
     return (
@@ -11,7 +12,7 @@ const Auto = () => {
 
             <h1 className="explore"><u>Explore Packages</u></h1>
 
-
+            <PackageList num="3" end="5" />
             
         </div>
     );
