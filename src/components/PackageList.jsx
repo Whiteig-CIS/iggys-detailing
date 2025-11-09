@@ -37,9 +37,10 @@ const PackageList = (props) => {
                         teir={pkg.teir}
                         interior_services={pkg.interior_services}
                         exterior_services={pkg.exterior_services}
-                        price={pkg.price}
+                        price={pkg.starting_price}
                         summary={pkg.summary}
-                        images={pkg.images} />
+                        images={pkg.images}
+                        preview_image={pkg.preview_image} />
             ))}
         </div>
     )

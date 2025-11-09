@@ -1,43 +1,13 @@
-/*
-#package-list {
-    justify-content: space-around;
-}
-
-.package {
-    margin:10px;
-    background:#fbe1cb;
-    border-radius:4px;
-}
-
-.package-description {
-    padding:0 10px;
-}
-
-.package h1 {
-    font-size:1.2em;
-}
-
-.package img {
-    max-width:100%;
-    display:block;
-    margin:auto;
-    border-radius:5px 5px 0 0;
-} 
-*/
+/* I had Chat GPT do the majority of this */
 
 /* --- Package list layout --- */
 #package-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
   justify-content: center;
 }
 
 /* --- Package card --- */
 .package {
-  --card-bg: #a7d2dc;       /* teal-blue like your mock */
-  --chip-bg: #dbe9ef;
-  background: var(--card-bg);
+  background: var(--primary-color);
   border-radius: 24px;
   padding: 16px 16px 18px;
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
@@ -54,7 +24,7 @@
 
 /* Image area (fixed ratio like the mock rectangle) */
 .package .package-image {
-  background: var(--chip-bg);
+  background: var(--background-color);
   border: 1px solid rgba(0,0,0,.08);
   border-radius: 10px;
   aspect-ratio: 4 / 3;
