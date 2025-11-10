@@ -2,12 +2,21 @@ import '../css/PackagePreview.css';
 import PackageList from "./PackageList"
 
 
-const PackagePreview = (prop) => {
+const PackagePreview = (props) => {
     return (
        
         <section id="main-preview">
+            <header>
+                <div id="package-title">
+                    <h1>{props.teir}</h1>
+                    <h1>{props.vehicle}</h1>
+                    <h1>Detail</h1>
+                </div>
 
-            <PackageList num="3" />
+                <h3>Starting Price: {props.price}</h3>
+
+            </header>
+           
 
         </section>
     

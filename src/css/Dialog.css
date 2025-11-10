@@ -38,6 +38,47 @@
   display: block;
 }
 
+.w3-container {
+  padding: 0;
+}
+
+#main-preview  {
+  width: 100% !important;
+}
+
+#main-preview header {
+  background: var(--primary-color);
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#package-title h1{
+  text-transform: capitalize;
+  display: inline-block;
+  white-space: pre;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+
+
+#main-preview h3 {
+  margin-top: 0;
+  padding-top: 0;
+  display: inline;
+}
+
+.dialog_list {
+  list-style-type: none;
+}
+
+.w3-modal-content {
+  border-radius: 20px;
+}
+
 
 @media only screen and (max-width: 600px) {
   .dialog-img { flex-basis: 100%; }

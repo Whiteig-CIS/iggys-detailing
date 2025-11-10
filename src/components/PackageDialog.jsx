@@ -1,6 +1,9 @@
 import "./../css/Dialog.css";
-
+import GalleryImage from "./GalleryImage";
+ 
+const imgPath = "https://detailing-server.onrender.com/images/portfolio/";
 const PackageDialog = (props) => {
+  console.log(props.interior_services);
   return (
     <div id="house-dialog" className="w3-modal">
       <div className="w3-modal-content">
@@ -13,23 +16,60 @@ const PackageDialog = (props) => {
             &times;
           </span>
 
-          {/* was class="columns" — in React it must be className */}
           <div className="columns">
+
+
+            <section id="main-preview">
+              <header>
+                <div>
+                <div id="package-title">
+                  <h1>{props.teir} </h1>
+                  <h1>{props.vehicle_type} </h1>
+                  <h1>Detail</h1>
+                </div>
+
+                <h3>Starting Price: ${props.price}</h3>
+                </div>
+              </header>
+
+
+              <ul className="dialog_list">
+                {props.interior_services.map((service, index) => (
+                  <li key={index}>{service}</li>
+                ))}
+              </ul>
+
+              <ul className="dialog_list">
+               {props.exterior_services.map((service, index) => (
+                  <li key={index}>{service}</li>
+                ))}
+              </ul>
+
+              <section id="portfolio" className="gallery">
+                 {props.images.map((group, index) => (
+                  <GalleryImage before={imgPath+group[0]} after={group[1] ? imgPath+group[1] : imgPath+group[0]}/>
+                ))}
+              </section>
+
+
+            </section>
+            {/*<div id="dialog-content">
+              <h3>{props.teir}</h3>
+              <h3>{props.vehicle_type}</h3>
+              <h3>${props.price}</h3>
+              <p>Summary {props.summary}</p>
+            </div>
+
             <div className="dialog-img">
               <img
                 className="dialog-img-el"
                 src={`https://detailing-server.onrender.com/images/portfolio/${props.preview_image}`}
                 alt="package"
               />
-            </div>
+            </div>*/}
 
-            <div id="dialog-content">
-              <h3>{props.teir}</h3>
-              <h3>{props.vehicle_type}</h3>
-              <h3>${props.price}</h3>
-              <p>Summary {props.summary}</p>
-            </div>
           </div>
+
         </div>
       </div>
     </div>

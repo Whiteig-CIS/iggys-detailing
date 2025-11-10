@@ -33,6 +33,10 @@ p {
     font-weight: 250;
 }
 
+h1,h2,h3,h4,h5,h6 { /*making sure w3 schools doesnt override this*/
+        font-family: "Almarai", sans-serif !important;
+}
+
 .hide-large {
     display: block;
 }
