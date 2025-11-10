@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/iggys-detailing/static/css/main.e738389c.css",
-    "main.js": "/iggys-detailing/static/js/main.b8c2af51.js",
+    "main.css": "/iggys-detailing/static/css/main.cfd63ed6.css",
+    "main.js": "/iggys-detailing/static/js/main.cd6e487a.js",
     "static/media/4a.jpeg": "/iggys-detailing/static/media/4a.c1321cf3f74fbc5e3e2d.jpeg",
     "static/media/4b.jpeg": "/iggys-detailing/static/media/4b.11f9839eb9201a62df3d.jpeg",
     "static/media/2b.jpeg": "/iggys-detailing/static/media/2b.90760e735e4cf8058a25.jpeg",
@@ -19,12 +19,15 @@
     "static/media/columbia.jpg": "/iggys-detailing/static/media/columbia.fa840fb0d65779b91d7a.jpg",
     "static/media/divider.svg": "/iggys-detailing/static/media/divider.79bc1e2fd95eb56226cf837cbbc41597.svg",
     "static/media/icons.svg": "/iggys-detailing/static/media/icons.c3f6596aa3f223a26a016f7d8de17aa1.svg",
+    "static/media/githubLogo.svg": "/iggys-detailing/static/media/githubLogo.6fe4998e1599e53a442cf953286969e0.svg",
+    "static/media/linkedinLogo.svg": "/iggys-detailing/static/media/linkedinLogo.532ef5bf8a58c9544ca1e8622e6d607d.svg",
+    "static/media/phoneLogo.svg": "/iggys-detailing/static/media/phoneLogo.11c28301324b6340c655d44189d90e35.svg",
     "index.html": "/iggys-detailing/index.html",
-    "main.e738389c.css.map": "/iggys-detailing/static/css/main.e738389c.css.map",
-    "main.b8c2af51.js.map": "/iggys-detailing/static/js/main.b8c2af51.js.map"
+    "main.cfd63ed6.css.map": "/iggys-detailing/static/css/main.cfd63ed6.css.map",
+    "main.cd6e487a.js.map": "/iggys-detailing/static/js/main.cd6e487a.js.map"
   },
   "entrypoints": [
-    "static/css/main.e738389c.css",
-    "static/js/main.b8c2af51.js"
+    "static/css/main.cfd63ed6.css",
+    "static/js/main.cd6e487a.js"
   ]
 }
