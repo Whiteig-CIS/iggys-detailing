@@ -1,13 +1,31 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 import "./../css/Package.css";
-import Package from "../components/Package";
+import Package from "./Package";
+import AddPackage from "./AddPackage";
 
 const PackageList = (props) => {
     const [packages, setPackages] = useState([]);
+    const [showAddPackage, setShowAddPackage] = useState(false);
 
-    //after page has loaded
-    useEffect(() => {
+    //open function
+    const openAddPackage = () => {
+      setShowAddPackage(true);
+    }
+
+    //close function
+    const closeAddPackage = () => {
+      setShowAddPackage(false);
+    }
+
+    //update
+    const updatePackages = (pkg) => {
+      setPackages((packages)=>[...packages, pkg]);
+    }
+
+
+  //-------- Load Packages ----------//
+  useEffect(() => {
   const loadPackages = async () => {
     try {
       const response = await axios.get("https://detailing-server.onrender.com/api/packages");
@@ -27,7 +45,17 @@ const PackageList = (props) => {
   loadPackages();
 }, [props.num, props.end]);
 
+// ---------- What shows on browser ----------//
     return (
+    <>
+        <button id="add-package-button" onClick={openAddPackage}>+</button>
+
+        {showAddPackage? (<AddPackage
+                              closeAddPackage={closeAddPackage}
+                              /> ): ("") }
+
+
+
         <div id="package-list" className="columns">
            
             {packages.map((pkg)=>(
@@ -43,6 +71,7 @@ const PackageList = (props) => {
                         preview_image={pkg.preview_image} />
             ))}
         </div>
+      </>
     )
 };
 

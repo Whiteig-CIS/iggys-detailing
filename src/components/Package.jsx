@@ -14,7 +14,6 @@ const Package = (props) => {
     }
 
 
-    console.log(props.images[0]);
     return (
         <>
             {showDialog ? (

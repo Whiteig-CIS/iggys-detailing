@@ -14,7 +14,7 @@
 #h1-div {
     position: absolute;
     left: 5%;
-    top: 20%;
+    top: 10%;
 
 }
 
@@ -28,11 +28,11 @@
 }
 
 .top-h1 {
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0 !important;
 }
 
 .bottom-h1 {
-    border-radius: 0 10px 10px 10px;
+    border-radius: 0 10px 10px 10px !important;
 }
 
 
