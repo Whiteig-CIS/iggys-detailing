@@ -28,7 +28,8 @@ const PackageList = (props) => {
   useEffect(() => {
   const loadPackages = async () => {
     try {
-      const response = await axios.get("https://detailing-server.onrender.com/api/packages");
+      //const response = await axios.get("https://detailing-server.onrender.com/api/packages");
+      const response = await axios.get("http://localhost:3001/api/packages");
 
       // if only num is provided: 0 → num
       // if both num and end are provided: num → end

@@ -15,26 +15,44 @@ const AddPackage = (props) => {
 
 
     const uploadImage = (event, before) => {
-       const file = event.target.files[0];
-  const src = URL.createObjectURL(file);
+        const file = event.target.files[0];
+        const src = URL.createObjectURL(file);
 
-  if (before) {
-    setBeforePrevSrc(src);
-  } else {
-    setAfterPrevSrc(src);
-  }
+        if (before) {
+            setBeforePrevSrc(src);
+        } else {
+            setAfterPrevSrc(src);
+        }
     };
 
 
 
-    const addToServer = async(event) => {
+    const addToServer = async (event) => {
         event.preventDefault(); //stops us from going to another page or refreshing
         setResult("Sending...");
 
+        const form = document.getElementById("add-property-form");
+
         const formData = new FormData(event.target);
+
+        const interior_services = formData.getAll("interior_service");
+
+        const exterior_services = formData.getAll("exterior_service");
+
+        formData.delete("interior_service");
+        formData.delete("exterior_service");
+
+
+        // Append the array to formData as a JSON string (or however your server expects it)
+        formData.append("interior_services", JSON.stringify(interior_services));
+        formData.append("exterior_services", JSON.stringify(exterior_services));
+
+
+        console.log(interior_services);
+        console.log(exterior_services);
         console.log(...formData);
         
-        const response = await fetch("http://localhost:3001/api/houses", {
+        const response = await fetch("http://localhost:3001/api/packages", {
             "method":"POST",
             "body":formData
         });
@@ -46,7 +64,7 @@ const AddPackage = (props) => {
             props.updatePackages(await response.json());
         } else {
             setResult("Error adding house");
-        }
+        } 
     };
 
 
@@ -79,7 +97,7 @@ const AddPackage = (props) => {
                                 {Array.from({ length: interiorCount }).map((_, i) => (
                                     <AddService
                                         key={i}
-                                        service="interior_services"
+                                        service="interior_service"
                                         index={i}
                                     // if your AddService needs unique field names:
                                     // name={`interior_service[${i}]`}
@@ -99,7 +117,7 @@ const AddPackage = (props) => {
                                 {Array.from({ length: exteriorCount }).map((_, i) => (
                                     <AddService
                                         key={i}
-                                        service="exterior_services"
+                                        service="exterior_service"
                                         index={i}
                                     // if your AddService needs unique field names:
                                     // name={`interior_service[${i}]`}
@@ -120,38 +138,37 @@ const AddPackage = (props) => {
 
                             <p id="img-before">
                                 <label htmlFor="img">Upload Before Photo:</label>
-                                <input type="file" id="BeforeImg" name="BeforeImg" accept="image/*" onChange={(event) => uploadImage(event, true)}/>
+                                <input type="file" id="BeforeImg" name="BeforeImg" accept="image/*" onChange={(event) => uploadImage(event, true)} />
                             </p>
 
                             <p id="img-after">
                                 <label htmlFor="img">Upload After Photo:</label>
-                                <input type="file" id="AfterImg" name="AfterImg" accept="image/*" onChange={(event) => uploadImage(event, false)}/>
+                                <input type="file" id="AfterImg" name="AfterImg" accept="image/*" onChange={(event) => uploadImage(event, false)} />
                             </p>
 
                             <div>
                                 <p id="before-img-prev-section">
-                                    {BeforePrevSrc!=""?
-                                    (<img id="before-img-prev" src={BeforePrevSrc}></img>):
-                                    ("")
+                                    {BeforePrevSrc != "" ?
+                                        (<img id="before-img-prev" src={BeforePrevSrc}></img>) :
+                                        ("")
                                     }
                                 </p>
                             </div>
 
                             <div>
                                 <p id="after-img-prev-section">
-                                    {AfterPrevSrc!=""?
-                                    (<img id="after-img-prev" src={AfterPrevSrc}></img>):
-                                    ("")
+                                    {AfterPrevSrc != "" ?
+                                        (<img id="after-img-prev" src={AfterPrevSrc}></img>) :
+                                        ("")
                                     }
                                 </p>
                             </div>
 
                             <p>
-                            <button type="submit">Submit</button>
+                                <button type="submit">Submit</button>
                             </p>
 
                             <p>{result}</p>
-
 
                         </form>
                     </div>
