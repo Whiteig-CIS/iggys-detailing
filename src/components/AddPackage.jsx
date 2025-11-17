@@ -31,7 +31,7 @@ const AddPackage = (props) => {
         event.preventDefault(); //stops us from going to another page or refreshing
         setResult("Sending...");
 
-        const form = document.getElementById("add-property-form");
+        const form = document.getElementById("add-package-form");
 
         const formData = new FormData(event.target);
 
@@ -43,18 +43,23 @@ const AddPackage = (props) => {
         formData.delete("exterior_service");
 
 
-        // Append the array to formData as a JSON string (or however your server expects it)
-        formData.append("interior_services", JSON.stringify(interior_services));
-        formData.append("exterior_services", JSON.stringify(exterior_services));
+        interior_services.forEach(service => {
+  formData.append("interior_services", service);
+});
+
+exterior_services.forEach(service => {
+  formData.append("exterior_services", service);
+});
 
 
-        console.log(interior_services);
-        console.log(exterior_services);
-        console.log(...formData);
-        
-        const response = await fetch("http://localhost:3001/api/packages", {
+
+
+      
+        console.log("trying to post");
+        const response = await fetch("https://detailing-server.onrender.com/api/packages", {
             "method":"POST",
             "body":formData
+            
         });
 
         if(response.status == 200){
@@ -63,7 +68,7 @@ const AddPackage = (props) => {
             props.closeAddDialog();
             props.updatePackages(await response.json());
         } else {
-            setResult("Error adding house");
+            setResult("Error adding package");
         } 
     };
 
@@ -74,11 +79,11 @@ const AddPackage = (props) => {
                 <div className="w3-modal-content">
                     <div className="w3-container">
                         <span id="dialog-close" className="w3-button w3-display-topright" onClick={props.closeAddPackage}>&times;</span>
-                        <form id="add-property-form" onSubmit={addToServer}>
+                        <form id="add-package-form" onSubmit={addToServer}>
                             <h2>Add Package</h2>
 
                             <p>
-                                <label htmlFor="vehicle_size">Vehicle Type:</label>
+                                <label htmlFor="vehicle_type">Vehicle Type:</label>
                                 <input type="text" id="vehicle_type" name="vehicle_type" required></input>
                             </p>
 

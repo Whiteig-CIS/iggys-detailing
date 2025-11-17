@@ -45,11 +45,16 @@ const PackageDialog = (props) => {
                 ))}
               </ul>
 
-              <section id="portfolio" className="gallery">
-                 {props.images.map((group, index) => (
-                  <GalleryImage before={imgPath+group[0]} after={group[1] ? imgPath+group[1] : imgPath+group[0]}/>
-                ))}
-              </section>
+             <section id="portfolio" className="gallery">
+  {Array.isArray(props.images) &&
+    props.images.map((group, index) => (
+      <GalleryImage
+        key={index}
+        before={imgPath + group[0]}
+        after={group[1] ? imgPath + group[1] : imgPath + group[0]}
+      />
+    ))}
+</section>
 
 
             </section>

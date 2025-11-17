@@ -14,22 +14,23 @@ const PackageList = (props) => {
     }
 
     //close function
-    const closeAddPackage = () => {
+    const closeAddDialog = () => {
       setShowAddPackage(false);
     }
 
     //update
     const updatePackages = (pkg) => {
       setPackages((packages)=>[...packages, pkg]);
-    }
+      console.log("in update packages");
+    };
 
 
   //-------- Load Packages ----------//
   useEffect(() => {
   const loadPackages = async () => {
     try {
-      //const response = await axios.get("https://detailing-server.onrender.com/api/packages");
-      const response = await axios.get("http://localhost:3001/api/packages");
+      const response = await axios.get("https://detailing-server.onrender.com/api/packages");
+      //const response = await axios.get("http://localhost:3001/api/packages");
 
       // if only num is provided: 0 → num
       // if both num and end are provided: num → end
@@ -52,7 +53,8 @@ const PackageList = (props) => {
         <button id="add-package-button" onClick={openAddPackage}>+</button>
 
         {showAddPackage? (<AddPackage
-                              closeAddPackage={closeAddPackage}
+                              closeAddDialog={closeAddDialog}
+                              updatePackages={updatePackages}
                               /> ): ("") }
 
 
