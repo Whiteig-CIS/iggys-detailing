@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import AddService from "./AddService";
+import "../css/AddPackageDialog.css";
+import ImageInput from "./ImageInput";
 
 const AddPackage = (props) => {
 
@@ -16,13 +18,32 @@ const AddPackage = (props) => {
 
     const uploadImage = (event, before) => {
         const file = event.target.files[0];
+        const files = event.target.files;
         const src = URL.createObjectURL(file);
+        let beforeIMG;
+        let afterIMG;
+
+        for (let i = 0; i < files.length; i++) {
+            if (files[i]) {
+                console.log("File exists:", files[i].name);
+            }
+        }
+
+        if(!file) {
+            console.log("file isnt here");
+            return;
+        }
 
         if (before) {
             setBeforePrevSrc(src);
+            console.log("made it to before");
+            
         } else {
             setAfterPrevSrc(src);
-        }
+            console.log("made it to after");
+           
+
+        } 
     };
 
 
@@ -44,32 +65,35 @@ const AddPackage = (props) => {
 
 
         interior_services.forEach(service => {
-  formData.append("interior_services", service);
-});
-
-exterior_services.forEach(service => {
-  formData.append("exterior_services", service);
-});
-
-
-
-
-      
-        console.log("trying to post");
-        const response = await fetch("https://detailing-server.onrender.com/api/packages", {
-            "method":"POST",
-            "body":formData
-            
+            formData.append("interior_services", service);
         });
 
-        if(response.status == 200){
+        exterior_services.forEach(service => {
+            formData.append("exterior_services", service);
+        });
+
+
+
+
+
+        console.log("trying to post");
+       for (let pair of formData.entries()) {
+    console.log(pair[0] + ':', pair[1]);
+}
+        //const response = await fetch("https://detailing-server.onrender.com/api/packages", {
+        const response = await fetch("http://localhost:3001/api/packages", {
+            "method": "POST",
+            "body": formData
+        });
+
+        if (response.status == 200) {
             setResult("Package Added");
             event.target.reset();
             props.closeAddDialog();
             props.updatePackages(await response.json());
         } else {
             setResult("Error adding package");
-        } 
+        }
     };
 
 
@@ -78,102 +102,110 @@ exterior_services.forEach(service => {
             <div id="add-dialog" className="w3-modal">
                 <div className="w3-modal-content">
                     <div className="w3-container">
-                        <span id="dialog-close" className="w3-button w3-display-topright" onClick={props.closeAddPackage}>&times;</span>
+                        <span id="dialog-close" className="w3-button w3-display-topright" onClick={props.closeAddDialog}>&times;</span>
                         <form id="add-package-form" onSubmit={addToServer}>
-                            <h2>Add Package</h2>
+                            <div id="add-title-result" className="columns">
+                                <h2>Add Package</h2>
+                                <div id="add-submit-div">
+                                    <button type="submit">Submit</button>
+                                </div>
+                                <div>{result}</div>
 
-                            <p>
-                                <label htmlFor="vehicle_type">Vehicle Type:</label>
-                                <input type="text" id="vehicle_type" name="vehicle_type" required></input>
-                            </p>
-
-                            <p>
-                                <label htmlFor="teir">Teir:</label>
-                                <input type="text" id="teir" name="teir" required></input>
-                            </p>
-
-                            <p>
-                                <label htmlFor="starting_price">Starting Price:</label>
-                                <input type="number" id="starting_price" name="starting_price" min="20" required></input>
-                            </p>
-
-                            {/*used chat to help*/}
-                            <p>
-                                {Array.from({ length: interiorCount }).map((_, i) => (
-                                    <AddService
-                                        key={i}
-                                        service="interior_service"
-                                        index={i}
-                                    // if your AddService needs unique field names:
-                                    // name={`interior_service[${i}]`}
-                                    />
-                                ))}
-                            </p>
-
-                            <button
-                                id="addInteriorService"
-                                type="button"
-                                onClick={() => setInteriorCount((c) => c + 1)}
-                            >Add Another Interior Service</button>
-
-
-                            {/*used chat to help*/}
-                            <p>
-                                {Array.from({ length: exteriorCount }).map((_, i) => (
-                                    <AddService
-                                        key={i}
-                                        service="exterior_service"
-                                        index={i}
-                                    // if your AddService needs unique field names:
-                                    // name={`interior_service[${i}]`}
-                                    />
-                                ))}
-                            </p>
-
-                            <button
-                                id="addExteriorService"
-                                type="button"
-                                onClick={() => setExteriorCount((c) => c + 1)}
-                            >Add Another Exterior Service</button>
-
-                            <p>
-                                <label htmlFor="summary">Summary:</label>
-                                <input type="text" id="summary" name="summary" required></input>
-                            </p>
-
-                            <p id="img-before">
-                                <label htmlFor="img">Upload Before Photo:</label>
-                                <input type="file" id="BeforeImg" name="BeforeImg" accept="image/*" onChange={(event) => uploadImage(event, true)} />
-                            </p>
-
-                            <p id="img-after">
-                                <label htmlFor="img">Upload After Photo:</label>
-                                <input type="file" id="AfterImg" name="AfterImg" accept="image/*" onChange={(event) => uploadImage(event, false)} />
-                            </p>
-
-                            <div>
-                                <p id="before-img-prev-section">
-                                    {BeforePrevSrc != "" ?
-                                        (<img id="before-img-prev" src={BeforePrevSrc}></img>) :
-                                        ("")
-                                    }
-                                </p>
                             </div>
 
-                            <div>
-                                <p id="after-img-prev-section">
-                                    {AfterPrevSrc != "" ?
-                                        (<img id="after-img-prev" src={AfterPrevSrc}></img>) :
-                                        ("")
-                                    }
-                                </p>
-                            </div>
+                            <section id="top-section">
+                                <div id="type-teir-price" className="columns">
+                                    <div>
+                                        <input type="text" id="vehicle_type" name="vehicle_type" placeholder="Vehicle Type" required></input>
+                                    </div>
 
-                            <p>
-                                <button type="submit">Submit</button>
-                            </p>
+                                    <div>
+                                        <input type="text" id="teir" name="teir" placeholder="Tier" required></input>
+                                    </div>
 
-                            <p>{result}</p>
+                                    <div>
+                                        <input type="number" id="starting_price" name="starting_price" placeholder="Starting Price" min="20" required></input>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <textarea type="text" id="summary" name="summary" placeholder="Summary" required></textarea>
+                                </div>
+                            </section>
+
+                            <section id="add-bottom-section" className="columns">
+
+                                <section id="add-service-section">
+
+                                    {/*INTERIOR SERVICES*/}
+                                    <div className="columns">
+                                        <div>
+                                            {Array.from({ length: interiorCount }).map((_, i) => (
+                                                <AddService
+                                                    key={i}
+                                                    service="interior_service"
+                                                    index={i}
+                                                />
+                                            ))}
+                                        </div>
+
+                                        <button
+                                            id="addInteriorService"
+                                            type="button"
+                                            onClick={() => setInteriorCount((c) => c + 1)}
+                                        >+</button>
+                                    </div>
+
+
+                                    {/*EXTERIOR SERVICES*/}
+                                    <div className="columns">
+                                        <div>
+                                            {Array.from({ length: exteriorCount }).map((_, i) => (
+                                                <AddService
+                                                    key={i}
+                                                    service="exterior_service"
+                                                    index={i}
+                                                />
+                                            ))}
+                                        </div>
+
+                                        <button
+                                            id="addExteriorService"
+                                            type="button"
+                                            onClick={() => setExteriorCount((c) => c + 1)}
+                                        >+</button>
+                                    </div>
+
+                                </section>
+
+
+
+                                <section id="add-image-section">
+                                    
+                                    {/* I didnt like how the button looked now how it wasnt customizable so I made this one*/}
+                                    <ImageInput uploadImage={uploadImage} name={"Before"}/>
+                                    <ImageInput uploadImage={uploadImage} name={"After"}/> 
+
+                                    <div id="before-img-prev-section">
+                                        {BeforePrevSrc != "" ?
+                                            (<img id="before-img-prev" src={BeforePrevSrc}></img>) :
+                                            ("")
+                                        }
+                                    </div>
+
+
+
+                                    <div id="after-img-prev-section">
+                                        {AfterPrevSrc != "" ?
+                                            (<img id="after-img-prev" src={AfterPrevSrc}></img>) :
+                                            ("")
+                                        }
+                                    </div>
+                                </section>
+
+                            </section>
+
+
 
                         </form>
                     </div>

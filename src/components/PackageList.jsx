@@ -29,16 +29,14 @@ const PackageList = (props) => {
   useEffect(() => {
   const loadPackages = async () => {
     try {
-      const response = await axios.get("https://detailing-server.onrender.com/api/packages");
-      //const response = await axios.get("http://localhost:3001/api/packages");
+      //const response = await axios.get("https://detailing-server.onrender.com/api/packages"); // RENDER
+      const response = await axios.get("http://localhost:3001/api/packages");// --------------- // LOCAL
 
-      // if only num is provided: 0 → num
-      // if both num and end are provided: num → end
-      const startIndex = props.end ? parseInt(props.num) : 0;
+      const startIndex = props.end ? parseInt(props.num) : 0;// ------------------------------- // loads a certain amount of packages
       const endIndex = props.end ? parseInt(props.end) : parseInt(props.num);
 
       const sliced = response.data.slice(startIndex, endIndex);
-      setPackages(sliced);
+      setPackages(sliced); // ----------------------------------------------------------------- // sets the package list to the packages from start to end
     } catch (error) {
       console.error("Error loading packages:", error);
     }

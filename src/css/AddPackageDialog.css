@@ -1,0 +1,51 @@
+
+.w3-container {
+    padding: 0px 10px 10px 10px;
+}
+
+#summary {
+    width: 100%;
+}
+
+#top-section div {
+    margin-bottom: 5px;
+}
+
+#top-section textarea {
+    max-width: 100%;
+    padding: 0;
+    
+}
+
+#type-teir-price {
+    display: flex;
+    justify-content: space-between;
+}
+
+#type-teir-price > :first-child {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#type-teir-price > :last-child {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#add-title-result  > :not(:first-child) {
+    margin-left: 25px;
+}
+
+#add-submit-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-submit-div button {
+    background: var(--dark-blue);
+    display: block;
+    border-radius: 7px;
+    border: none;
+    color: var(--text1);
+}
