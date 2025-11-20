@@ -2,49 +2,41 @@ import React, { useState } from "react";
 import AddService from "./AddService";
 import "../css/AddPackageDialog.css";
 import ImageInput from "./ImageInput";
+import { useEffect } from "react";
 
 const AddPackage = (props) => {
 
     const [interiorCount, setInteriorCount] = useState(1);
     const [exteriorCount, setExteriorCount] = useState(1);
 
-    const [BeforePrevSrc, setBeforePrevSrc] = useState("");
-    const [AfterPrevSrc, setAfterPrevSrc] = useState("");
-
     const [result, setResult] = useState("");
+    const [images, setImages] = useState([]);
+
+    const [stage, setStage] = useState(true);
+    const [pairCount, setPairCount] = useState(0);
+
+   
+    
 
 
 
-
-    const uploadImage = (event, before) => {
+    const uploadImage = (event, IsBefore) => {
         const file = event.target.files[0];
-        const files = event.target.files;
-        const src = URL.createObjectURL(file);
-        let beforeIMG;
-        let afterIMG;
+        if (!file) return;
 
-        for (let i = 0; i < files.length; i++) {
-            if (files[i]) {
-                console.log("File exists:", files[i].name);
-            }
-        }
+        setImages(prev => [...prev, file]);
+        event.target.value = "";
 
-        if(!file) {
-            console.log("file isnt here");
-            return;
-        }
+        setPairCount(prev => (stage ? prev + 1 : prev));
+        console.log("pair count: "+pairCount);
 
-        if (before) {
-            setBeforePrevSrc(src);
-            console.log("made it to before");
-            
-        } else {
-            setAfterPrevSrc(src);
-            console.log("made it to after");
-           
-
-        } 
+        setStage(prev => !prev); // keeps track if the user is supposed to upload a before or after image
+       
     };
+
+    useEffect(() => {
+        console.log(images);   
+    }, [images]);
 
 
 
@@ -182,11 +174,11 @@ const AddPackage = (props) => {
 
                                 <section id="add-image-section">
                                     
-                                    {/* I didnt like how the button looked now how it wasnt customizable so I made this one*/}
-                                    <ImageInput uploadImage={uploadImage} name={"Before"}/>
-                                    <ImageInput uploadImage={uploadImage} name={"After"}/> 
+                                    {/* I didnt like how the button looked now how it wasnt customizable so I made this one */}
+                                    <ImageInput uploadImage={uploadImage} name={"Before"} stage={stage} beforeBttn={true} />
+                                    <ImageInput uploadImage={uploadImage} name={"After"} stage={stage} beforeBttn={false}/> 
 
-                                    <div id="before-img-prev-section">
+                                 {/*   <div id="before-img-prev-section">
                                         {BeforePrevSrc != "" ?
                                             (<img id="before-img-prev" src={BeforePrevSrc}></img>) :
                                             ("")
@@ -200,7 +192,7 @@ const AddPackage = (props) => {
                                             (<img id="after-img-prev" src={AfterPrevSrc}></img>) :
                                             ("")
                                         }
-                                    </div>
+                                    </div> */}
                                 </section>
 
                             </section>

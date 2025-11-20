@@ -1,7 +1,14 @@
 import React, { useRef } from "react";
 
-const ImageInput = ({ uploadImage, name}) => {
-  const fileInput = useRef(null);
+const ImageInput = ({ uploadImage, name, stage, beforeBttn}) => {
+    const fileInput = useRef(null);
+    
+    
+    const handleChange = (event) => {
+    
+        uploadImage(event);
+  
+    }
 
 
   return (
@@ -10,17 +17,20 @@ const ImageInput = ({ uploadImage, name}) => {
         type="file"
         name={name+"Img"}
         ref={fileInput}
-        onChange={(event) => uploadImage(event, (name=="Before") ? true : false)} // determines if its previewed as a before image or after image
+         disabled = {!(beforeBttn == stage)}
+        onChange={handleChange} // determines if its previewed as a before image or after image
         style={{ display: 'none' }}
+       
+        multiple
       />
       <button
-        type="button"
-        className="upload-btn"
-        onClick={() => fileInput.current && fileInput.current.click()}
-        style={{ width: '40%', fontSize: '14px', marginBottom: '10px' }}
-      >
-        {name+" Image"}
-      </button>
+  type="button"
+  className="upload-btn"
+  disabled={!(beforeBttn == stage)}
+  onClick={() => fileInput.current && fileInput.current.click()}
+>
+  {name + " Image"}
+</button>
     </>
   );
 };
