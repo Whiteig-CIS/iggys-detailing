@@ -54,38 +54,46 @@ const AddPackage = (props) => {
 
         formData.delete("interior_service");
         formData.delete("exterior_service");
+        formData.delete("BeforeImg");
+        formData.delete("AfterImg");
 
 
+       
         interior_services.forEach(service => {
             formData.append("interior_services", service);
         });
+        
+       
 
         exterior_services.forEach(service => {
             formData.append("exterior_services", service);
         });
 
+        images.forEach(file => {
+            formData.append("images", file);
+        });
 
 
 
 
         console.log("trying to post");
-       for (let pair of formData.entries()) {
-    console.log(pair[0] + ':', pair[1]);
-}
-        //const response = await fetch("https://detailing-server.onrender.com/api/packages", {
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ':', pair[1]);
+        }
+           //const response = await fetch("https://detailing-server.onrender.com/api/packages", {
         const response = await fetch("http://localhost:3001/api/packages", {
             "method": "POST",
             "body": formData
         });
 
-        if (response.status == 200) {
+        /*if (response.status == 200) {
             setResult("Package Added");
             event.target.reset();
             props.closeAddDialog();
             props.updatePackages(await response.json());
         } else {
-            setResult("Error adding package");
-        }
+            setResult("Error adding package"); 
+        } */
     };
 
 
