@@ -23,6 +23,7 @@ const AddPackage = (props) => {
 
 
 
+
     const uploadImage = (event, IsBefore) => {
         const file = event.target.files[0];
         if (!file) return;
@@ -61,6 +62,8 @@ const AddPackage = (props) => {
 
     const addToServer = async (event) => {
         event.preventDefault(); //stops us from going to another page or refreshing
+
+       if(images.length % 2 == 0) {
         setResult("Sending...");
 
         const form = document.getElementById("add-package-form");
@@ -110,6 +113,10 @@ const AddPackage = (props) => {
             props.updatePackages(await response.json());
         } else {
             setResult("Error adding package"); 
+        }
+        }
+        else {
+            setResult("incorrect amount of images");
         }
     };
 

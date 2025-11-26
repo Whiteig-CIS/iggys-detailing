@@ -3,6 +3,9 @@
 /* --- Package list layout --- */
 #package-list {
   justify-content: center;
+  flex-wrap: wrap; /* Allows packages to wrap to a new row */
+  gap: 3vw; /* Add gap between items for better spacing */
+  padding: 2vw;
 }
 
 /* --- Package card --- */
@@ -11,21 +14,39 @@
   border-radius: 24px;
   padding: 16px 16px 18px;
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
-  transition: transform .15s ease, box-shadow .15s ease;
+  border: 2px solid transparent; 
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; 
   cursor: pointer;
-  max-width: 280px;
+  max-width: 280px; /* Keep max-width for small screens */
   margin: 10px auto;
 }
 
 .package:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+  transform: scale(1.02) translateY(-4px); /* Bigger lift and slight scale */
+  box-shadow: 0 15px 30px rgba(0,0,0,.2); /* Stronger shadow */
+  border-color: var(--dark-blue); /* Highlight border with a dark color */
 }
+
+/* Media Query for Large Screens (to enforce 3 packages per row) */
+@media (min-width: 799px) {
+    #package-list {
+        /* Ensure the container uses padding for edge spacing */
+        padding: 20px;
+    }
+    
+    .package {
+        /* Distribute the width: 100% / 3 = 33.33%. Adjusting for the 10px left/right margins (20px total) */
+        flex: 0 0 calc(27% - 20px); 
+        max-width: none; /* Override the fixed max-width for column layout */
+        margin: 10px; /* Consistent margin for flex items */
+    }
+}
+
 
 /* Image area (fixed ratio like the mock rectangle) */
 .package .package-image {
   background: var(--background-color);
-  border: 1px solid rgba(0,0,0,.08);
+  border: 1px solid rgba(213, 178, 178, 0.08);
   border-radius: 10px;
   aspect-ratio: 4 / 3;
   overflow: hidden;
@@ -34,20 +55,11 @@
   margin-bottom: 12px;
 }
 
-/* If you pass a real image */
 .package .package-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-/* Tier title */
-.package h1, .package h3, .package .package-tier {
-  margin: 8px 0 6px;
-  font-size: 1.6rem;
-  line-height: 1.2;
-  text-align: center;
 }
 
 /* Summary line */
@@ -58,18 +70,22 @@
   opacity: .9;
 }
 
-/* Keep any existing selector you used earlier */
-.package-description { padding: 0 4px; }
-
 
 #add-package-button {
   margin: 20px;
-  width: 4vw;
+  width: 3.5vw; 
+  font-size: 2rem; 
+  text-align: center; 
   background-color: var(--dark-blue);
-  box-shadow: none !important;
-  border: 2px solid var(#000) !important;
-  border-radius: 10px;
+  border: 2px solid var(--primary-color) !important; 
+  border-radius: 50%; 
   color: var(--primary-color);
+  cursor: pointer;
+  
 }
 
-
+#add-package-button:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-blue);
+    transform: scale(1.05);
+}

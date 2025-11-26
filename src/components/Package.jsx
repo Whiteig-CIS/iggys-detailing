@@ -30,7 +30,7 @@ const Package = (props) => {
 
             <section className="package" onClick={showPackageDetails}>
                 <div className="package-image">
-                    <img src={"https://detailing-server.onrender.com/images/portfolio/" + props.preview_image} alt="package" />  
+                    {/*<img src={"https://detailing-server.onrender.com/images/portfolio/" + props.preview_image} alt="package" /> */}
                     <img src={"http://localhost:3001/images/portfolio/" + props.preview_image} alt="package" />  
                 </div>
                 <h3 className="package-tier">{props.tier}</h3>
