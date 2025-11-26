@@ -1,7 +1,7 @@
 .gallery-image-container {
     position: relative;
     cursor: pointer;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .gallery-image-container img {

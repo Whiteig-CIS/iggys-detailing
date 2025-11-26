@@ -1,46 +1,134 @@
-
 .w3-container {
-    padding: 0px 10px 10px 10px;
+    padding: 20px; /* Increased padding */
+    background-color: var(--background-color);
 }
 
-#summary {
-    width: 100%;
+.w3-modal-content {
+    border-radius: 10px; /* Rounded corners for the modal */
+    overflow: hidden; /* Ensures padding and border-radius are respected */
 }
 
-#top-section div {
-    margin-bottom: 5px;
+/* --- Typography and Header Styling --- */
+
+#add-title-result {
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color); /* Separator line */
+    padding-bottom: 10px;
 }
 
-#top-section textarea {
-    max-width: 100%;
-    padding: 0;
-    
-}
-
-#type-teir-price {
-    display: flex;
-    justify-content: space-between;
-}
-
-#type-teir-price > :first-child {
-    display: flex;
-    justify-content: flex-start;
-}
-
-#type-teir-price > :last-child {
-    display: flex;
-    justify-content: flex-end;
-}
-
-#add-title-result  > :not(:first-child) {
+#add-title-result > :not(:first-child) {
     margin-left: 25px;
 }
 
 #add-submit-div {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: flex-end; /* Pushed to the right for a clean look */
+    flex-grow: 1; /* Allows it to take available space */
 }
+
+/* --- Input and Textarea Styling --- */
+
+#top-section input[type="text"],
+#top-section input[type="number"],
+#top-section textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    font-size: 16px;
+    outline-color: var(--primary-color); /* Highlight color on focus */
+}
+
+#top-section div {
+    margin-bottom: 0; /* Managed spacing on the inputs directly */
+}
+
+#summary {
+    width: 100%;
+    min-height: 80px; /* Give the summary field some height */
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+/* --- Type-Tier-Price Section (Layout) --- */
+
+#type-teir-price {
+    display: flex;
+    gap: 20px; /* Space between the input groups */
+    margin-bottom: 10px;
+}
+
+#type-teir-price > div {
+    flex-grow: 1;
+}
+
+#type-teir-price > :first-child,
+#type-teir-price > :last-child {
+    display: block; /* Removed flex from inner divs for standard input behavior */
+}
+
+
+/* --- Bottom Section Layout (Services and Images) --- */
+
+#add-bottom-section {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+#add-service-section {
+    flex: 2; /* Takes up more space */
+}
+
+#add-image-section {
+    flex: 1; /* Takes up less space */
+    border-left: 1px solid var(--border-color); /* Visual separator */
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* --- Service List and Add Button Styling --- */
+
+#add-service-section > div.columns {
+    align-items: flex-start; /* Align services to the top */
+    margin-bottom: 15px;
+}
+
+#add-service-section > div.columns > div {
+    flex-grow: 1;
+}
+
+
+#addInteriorService,
+#addExteriorService {
+    /* Styles for the '+' button */
+    background: var(--accent-color);
+    color: var(--text1);
+    width: 40px; /* Make it a small square button */
+    height: 40px;
+    border-radius: 50%; /* Circular shape */
+    border: none;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-left: 15px; /* Space from the input field */
+    flex-shrink: 0; /* Prevent it from shrinking */
+}
+
+#addInteriorService:hover,
+#addExteriorService:hover {
+    background: var(--dark-blue);
+}
+
+
+/* --- Submit Button Styling --- */
 
 #add-submit-div button {
     background: var(--dark-blue);
@@ -48,4 +136,31 @@
     border-radius: 7px;
     border: none;
     color: var(--text1);
+    padding: 10px 20px; /* Increased padding */
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#add-submit-div button:hover {
+    background: var(--accent-color); /* Accent on hover */
+}
+
+/* --- Unlimited Scroll Class for Service Lists --- */
+.unlimited-scroll {
+    max-height: 300px; /* Sets the visible window height */
+    overflow-y: auto; /* Enables vertical scrolling when content exceeds max-height */
+    padding-right: 15px; /* Adds space for the scrollbar so content doesn't get squished */
+    flex-wrap: wrap; /* Important for flex container to ensure content wraps/scrolls nicely */
+}
+
+/* Scrollbar hiding for sleek look, matching body styles in index.css */
+.unlimited-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+}
+
+.unlimited-scroll {
+    -ms-overflow-style: none;  /* Internet Explorer, Edge */
+    scrollbar-width: none;     /* Firefox */
 }

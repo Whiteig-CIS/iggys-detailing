@@ -1,7 +1,9 @@
 import "./../css/Dialog.css";
 import GalleryImage from "./GalleryImage";
  
-const imgPath = "https://detailing-server.onrender.com/images/portfolio/";
+//const imgPath = "https://detailing-server.onrender.com/images/portfolio/";
+const imgPath = "http://localhost:3001/images/portfolio/";
+
 const PackageDialog = (props) => {
   console.log(props.interior_services);
   return (

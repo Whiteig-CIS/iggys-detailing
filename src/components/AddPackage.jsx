@@ -3,6 +3,7 @@ import AddService from "./AddService";
 import "../css/AddPackageDialog.css";
 import ImageInput from "./ImageInput";
 import { useEffect } from "react";
+import GalleryImage from "./GalleryImage";
 
 const AddPackage = (props) => {
 
@@ -14,9 +15,11 @@ const AddPackage = (props) => {
 
     const [stage, setStage] = useState(true);
     const [pairCount, setPairCount] = useState(0);
+    const [galleryList, setGalleryList] = useState([]);
+    const [pendingBeforeURL, setPendingBeforeURL] = useState(null);
 
-   
-    
+
+
 
 
 
@@ -24,18 +27,34 @@ const AddPackage = (props) => {
         const file = event.target.files[0];
         if (!file) return;
 
+        // create object URL from the newly selected file (don't rely on state 'images' being updated yet)
+        const fileURL = URL.createObjectURL(file);
+
+        // keep raw files for upload
         setImages(prev => [...prev, file]);
         event.target.value = "";
 
-        setPairCount(prev => (stage ? prev + 1 : prev));
-        console.log("pair count: "+pairCount);
+        // If stage === true we expect a 'before' image next; when stage is false we just received the 'after' image
+        if (stage) {
+            // store the before image URL until the after image is uploaded
+            setPendingBeforeURL(fileURL);
+            setPairCount(prev => prev + 1);
+        } else {
+            // we have both before (pendingBeforeURL) and after (fileURL)
+            const toGal = { beforeSRC: pendingBeforeURL, afterSRC: fileURL };
+            setGalleryList(prev => [...prev, toGal]);
+            // clear pending before
+            setPendingBeforeURL(null);
+        }
 
-        setStage(prev => !prev); // keeps track if the user is supposed to upload a before or after image
-       
-    };
+        // toggle stage for next upload
+        setStage(prev => !prev);
+    }
+
+
 
     useEffect(() => {
-        console.log(images);   
+        console.log(images);
     }, [images]);
 
 
@@ -58,12 +77,10 @@ const AddPackage = (props) => {
         formData.delete("AfterImg");
 
 
-       
+
         interior_services.forEach(service => {
             formData.append("interior_services", service);
         });
-        
-       
 
         exterior_services.forEach(service => {
             formData.append("exterior_services", service);
@@ -80,20 +97,20 @@ const AddPackage = (props) => {
         for (let pair of formData.entries()) {
             console.log(pair[0] + ':', pair[1]);
         }
-           //const response = await fetch("https://detailing-server.onrender.com/api/packages", {
+        //const response = await fetch("https://detailing-server.onrender.com/api/packages", {
         const response = await fetch("http://localhost:3001/api/packages", {
             "method": "POST",
             "body": formData
         });
 
-        /*if (response.status == 200) {
+        if (response.status === 200) {
             setResult("Package Added");
             event.target.reset();
             props.closeAddDialog();
             props.updatePackages(await response.json());
         } else {
             setResult("Error adding package"); 
-        } */
+        }
     };
 
 
@@ -133,7 +150,7 @@ const AddPackage = (props) => {
                                 </div>
                             </section>
 
-                            <section id="add-bottom-section" className="columns">
+                            <section id="add-bottom-section" className="columns unlimited-scroll">
 
                                 <section id="add-service-section">
 
@@ -181,26 +198,25 @@ const AddPackage = (props) => {
 
 
                                 <section id="add-image-section">
-                                    
+
                                     {/* I didnt like how the button looked now how it wasnt customizable so I made this one */}
                                     <ImageInput uploadImage={uploadImage} name={"Before"} stage={stage} beforeBttn={true} />
-                                    <ImageInput uploadImage={uploadImage} name={"After"} stage={stage} beforeBttn={false}/> 
+                                    <ImageInput uploadImage={uploadImage} name={"After"} stage={stage} beforeBttn={false} />
 
-                                 {/*   <div id="before-img-prev-section">
-                                        {BeforePrevSrc != "" ?
-                                            (<img id="before-img-prev" src={BeforePrevSrc}></img>) :
+                                      <div id="before-img-prev-section">
+                                        {pairCount != 0 ?
+                                           galleryList.map((pair, index) => (
+                                                <GalleryImage before={pair.beforeSRC} after={pair.afterSRC} />
+                                           ))
+                                            
+                                           :
                                             ("")
                                         }
-                                    </div>
+                                    </div> 
 
 
 
-                                    <div id="after-img-prev-section">
-                                        {AfterPrevSrc != "" ?
-                                            (<img id="after-img-prev" src={AfterPrevSrc}></img>) :
-                                            ("")
-                                        }
-                                    </div> */}
+                                   
                                 </section>
 
                             </section>
@@ -220,4 +236,5 @@ const AddPackage = (props) => {
 
 
 };
+
 export default AddPackage;

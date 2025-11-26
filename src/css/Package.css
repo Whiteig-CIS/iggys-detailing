@@ -62,4 +62,14 @@
 .package-description { padding: 0 4px; }
 
 
+#add-package-button {
+  margin: 20px;
+  width: 4vw;
+  background-color: var(--dark-blue);
+  box-shadow: none !important;
+  border: 2px solid var(#000) !important;
+  border-radius: 10px;
+  color: var(--primary-color);
+}
+
 
