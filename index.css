@@ -1,11 +1,15 @@
 :root {
-    --background-color: #fff;
+   --background-color: #fff;
     --primary-color: #91d3e0;
     --secondary-color: #000;
     --text1: #fff;
     --text2: #000;
     --h1-highlight: #5a5a5ab3;
     --nav-small-background: #66a5b1;
+    --dark-blue: #253d42;
+    /* NEW COLORS FOR SLEEK DESIGN */
+    --border-color: #ddd; /* Light gray for subtle borders */
+    --accent-color: #66a5b1; /* Using a lighter blue from nav-small-background for accents */
 }
 
 body {
@@ -27,7 +31,7 @@ body::-webkit-scrollbar {
   }
 
 /*typographgy*/
-p {
+p, #add-package-form div {
     line-height: 1.75;
     font-size: 120%;
     font-weight: 250;
@@ -87,5 +91,13 @@ h1,h2,h3,h4,h5,h6 { /*making sure w3 schools doesnt override this*/
     .six {
         flex: 6;
     }
+
+
+
+
+
+
+
+
 
 }

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/iggys-detailing/static/css/main.cfd63ed6.css",
-    "main.js": "/iggys-detailing/static/js/main.1da47b0b.js",
+    "main.css": "/iggys-detailing/static/css/main.bb0ab966.css",
+    "main.js": "/iggys-detailing/static/js/main.0c82d49d.js",
     "static/media/4a.jpeg": "/iggys-detailing/static/media/4a.c1321cf3f74fbc5e3e2d.jpeg",
     "static/media/4b.jpeg": "/iggys-detailing/static/media/4b.11f9839eb9201a62df3d.jpeg",
     "static/media/2b.jpeg": "/iggys-detailing/static/media/2b.90760e735e4cf8058a25.jpeg",
@@ -23,11 +23,11 @@
     "static/media/linkedinLogo.svg": "/iggys-detailing/static/media/linkedinLogo.532ef5bf8a58c9544ca1e8622e6d607d.svg",
     "static/media/phoneLogo.svg": "/iggys-detailing/static/media/phoneLogo.11c28301324b6340c655d44189d90e35.svg",
     "index.html": "/iggys-detailing/index.html",
-    "main.cfd63ed6.css.map": "/iggys-detailing/static/css/main.cfd63ed6.css.map",
-    "main.1da47b0b.js.map": "/iggys-detailing/static/js/main.1da47b0b.js.map"
+    "main.bb0ab966.css.map": "/iggys-detailing/static/css/main.bb0ab966.css.map",
+    "main.0c82d49d.js.map": "/iggys-detailing/static/js/main.0c82d49d.js.map"
   },
   "entrypoints": [
-    "static/css/main.cfd63ed6.css",
-    "static/js/main.1da47b0b.js"
+    "static/css/main.bb0ab966.css",
+    "static/js/main.0c82d49d.js"
   ]
 }
