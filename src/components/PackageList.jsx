@@ -29,8 +29,8 @@ const PackageList = (props) => {
   useEffect(() => {
   const loadPackages = async () => {
     try {
-      //const response = await axios.get("https://detailing-server.onrender.com/api/packages"); // RENDER
-      const response = await axios.get("http://localhost:3001/api/packages");// --------------- // LOCAL
+      const response = await axios.get("https://detailing-server.onrender.com/api/packages"); // RENDER
+      //const response = await axios.get("http://localhost:3001/api/packages");// --------------- // LOCAL
 
       const startIndex = props.end ? parseInt(props.num) : 0;// ------------------------------- // loads a certain amount of packages
       const endIndex = props.end ? parseInt(props.end) : parseInt(props.num);
@@ -61,7 +61,7 @@ const PackageList = (props) => {
            
             {packages.map((pkg)=>(
                 <Package  key={pkg._id} 
-                        id={pkg._id}
+                        _id={pkg._id}
                         vehicle_type={pkg.vehicle_type} 
                         teir={pkg.teir}
                         interior_services={pkg.interior_services}

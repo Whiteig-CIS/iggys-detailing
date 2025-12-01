@@ -89,3 +89,12 @@
     color: var(--dark-blue);
     transform: scale(1.05);
 }
+
+#left-icon, #right-icon {
+  width: 50%;
+  display: flex;
+}
+
+#right-icon a{
+  text-align: right;
+}
