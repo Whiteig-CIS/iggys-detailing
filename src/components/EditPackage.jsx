@@ -29,6 +29,7 @@ const EditPackage = (props) => {
 
     // Helper function to determine the correct image source
     const path = "http://localhost:3001/images/portfolio/";
+    
 
     const getImagePath = (fileOrName) => {
         if (!fileOrName) return "";
