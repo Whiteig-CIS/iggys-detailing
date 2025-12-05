@@ -8,7 +8,7 @@ import MainNav from './MainNav';
 const LogoBanner = ({ menuOpen, onToggleMenu }) => {
     return (
     
-        <div id="logo-banner" className="one">
+        <div id="logo-banner" className="">
 
             <div id="toggle-container" className={`one-small ${menuOpen ? "toggle-highlight" : ""}`}>
                 <a onClick={onToggleMenu} href="#">
@@ -17,7 +17,7 @@ const LogoBanner = ({ menuOpen, onToggleMenu }) => {
             </div>
 
 
-            <div id="logo" className="one-small"> <img src={logo} alt="Iggy's Detailing" />    </div>
+            <div id="logo" className=""> <img src={logo} alt="Iggy's Detailing" />    </div>
 
             <div id="book-now-small-container" className="hide-large one-small">  <div id="book-now-small-bttn"><BookNow /></div>    </div>
 

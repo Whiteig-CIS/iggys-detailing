@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from "react";
 import AddService from "./AddService";
-import ImageInput from "./ImageInput";
 import GalleryImage from "./GalleryImage";
+import ImageInput from "./ImageInput";
+import "../css/EditPackage.css";
 
 
 const EditPackage = (props) => {
@@ -20,15 +22,69 @@ const EditPackage = (props) => {
 
     const [result, setResult] = useState("");
 
-    const [images, setImages] = useState([props.images]);
+    // Initialize images state with a copy of props.images
+    const [images, setImages] = useState(props.images || []);
 
-    const gallerizeImages = () => {
-        for (let i = 0; i < images.length; ++i) {
-            //   const galleryImg =  <GalleryImage before={images[i][0]} after={images=[i][1]};
-            //  images[i] = galleryImg;
-        }
+    const [pairNum, setPairNum] = useState(0);
+
+    // Helper function to determine the correct image source
+    const path = "http://localhost:3001/images/portfolio/";
+
+    const getImagePath = (fileOrName) => {
+        if (!fileOrName) return "";
+
+        // Check if the item is a File object (meaning it's a new upload)
+        if (fileOrName instanceof File) {
+            // Use the client-side URL for display
+            return URL.createObjectURL(fileOrName); 
+        } 
+        
+        // Otherwise, assume it's the file name string from the database
+        return path + fileOrName;
     }
 
+    const nextPair = () => {
+        const lastIndex = images.length - 1;
+
+        setPairNum(prevPairNum => {
+            if (prevPairNum < lastIndex) {
+                console.log("Advancing from " + prevPairNum + " to " + (prevPairNum + 1));
+                return prevPairNum + 1;
+            } else {
+                console.log("Wrapping from " + prevPairNum + " to 0");
+                return 0;
+            }
+        });
+    }
+
+    const prevPair = () => {
+        const lastIndex = images.length - 1;
+
+        setPairNum(prevPairNum => {
+            if (prevPairNum > 0) {
+                console.log("Going back from " + prevPairNum + " to " + (prevPairNum - 1));
+                return prevPairNum - 1;
+            } else {
+                console.log("Wrapping to end: from " + prevPairNum + " to " + lastIndex);
+                return lastIndex;
+            }
+        });
+    };
+
+    const testImages = () => {
+        if (pairNum < 0 || pairNum >= images.length) {
+            console.error(`Invalid pairNum: ${pairNum}. Cannot access image.`);
+            return;
+        }
+
+        const set = images[pairNum];
+        if (set && set[0] && set[1]) {
+            console.log("Before Image Pair: ", set[0]);
+            console.log("After Image Pair: ", set[1]);
+        } else {
+            console.error(`Image set at index ${pairNum} is malformed or missing.`);
+        }
+    }
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -36,19 +92,40 @@ const EditPackage = (props) => {
         setInputs((values) => ({ ...values, [name]: value }));
     }
 
-    const handleImageChange = (event) => {
-        //Gonna be tough
+   // --- MODIFIED IMAGE HANDLER ---
+   const handleImageChange = (event, index) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        // 1. Create a copy of the current images state
+        const newImages = [...images];
+
+        // Ensure the current pair exists and is an array
+        if (newImages[pairNum] && Array.isArray(newImages[pairNum])) {
+            
+            // 2. Update the specific index (0 for Before, 1 for After) with the File object
+            newImages[pairNum][index] = file; 
+            
+            // 3. Update the state to trigger a re-render
+            setImages(newImages);
+
+            console.log(`Image at pairNum ${pairNum}, index ${index} updated with a new File object.`);
+        } else {
+             console.error(`Cannot update image: Image set at index ${pairNum} is malformed or missing.`);
+        }
+        
+        // Clear the input value so the same file can be selected again
+        event.target.value = "";
     }
 
+    // --- MODIFIED SUBMISSION HANDLER ---
     const onSubmit = async (event) => {
         event.preventDefault();
         setResult("sending...");
         const formData = new FormData(event.target);
 
         const interior_services = formData.getAll("interior_service");
-
         const exterior_services = formData.getAll("exterior_service");
-
 
         formData.delete("interior_service");
         formData.delete("exterior_service");
@@ -61,9 +138,27 @@ const EditPackage = (props) => {
             formData.append("exterior_services", service);
         });
 
+        // Loop through the images state to find newly uploaded File objects
+        images.forEach((pair, pairIndex) => {
+            if (!pair || !Array.isArray(pair)) return;
+
+            pair.forEach((item, index) => {
+                // If the item is a File object, it's a new upload
+                if (item instanceof File) {
+                    // Append the file, using a structured name the server can understand
+                    // to replace the image at this specific index (pair_index, before/after).
+                    const slotName = index === 0 ? 'before' : 'after';
+                    formData.append(`new_image_pair_${pairIndex}_${slotName}`, item);
+                    
+                    // You might also need to send the original filename if the server needs 
+                    // to know which file to delete, but for now, we just send the new file.
+                }
+            });
+        });
+
+
         const response = await fetch(
             `http://localhost:3001/api/packages/${props._id}`,
-
             {
                 method: "PUT",
                 body: formData,
@@ -78,22 +173,22 @@ const EditPackage = (props) => {
             props.close();
         } else {
             console.log("error editing package", response);
-            setResult(result.message);
+            setResult("Error: " + response.statusText);
         }
     };
 
     return (
         <>
-            <div id="edit-dialog" class="w3-modal">
-                <div class="w3-modal-content">
-                    <div class="w3-container">
+            <div id="edit-dialog" className="w3-modal">
+                <div className="w3-modal-content">
+                    <div className="w3-container">
                         <span id="close-dialog"
-                            class="w3-button w3-display-topright"
+                            className="w3-button w3-display-topright"
                             onClick={props.close}>
                             &times;
                         </span>
 
-                        <form id="edit-form" onSubmit={onSubmit}>
+                        <form id="edit-form" onSubmit={onSubmit} >
 
 
                             <div id="add-title-result" className="columns">
@@ -136,11 +231,13 @@ const EditPackage = (props) => {
 
                                         {inputs.interior_services && inputs.interior_services.map((service, index) => (
                                             <AddService
+                                                key={`interior-${index}`} // Added key for list items
                                                 service="interior_service"
                                                 textVal={service}
                                                 handleChange={handleChange}
                                             />
                                         ))}
+                                        <AddService service="interior_service" textVal="" handleChange={handleChange} />
 
 
                                     </section>
@@ -152,12 +249,14 @@ const EditPackage = (props) => {
 
                                         {inputs.exterior_services && inputs.exterior_services.map((service, index) => (
                                             <AddService
+                                                key={`exterior-${index}`} // Added key for list items
                                                 service="exterior_service"
                                                 textVal={service}
                                                 handleChange={handleChange}
 
                                             />
                                         ))}
+                                         <AddService service="exterior_service" textVal="" handleChange={handleChange} />
 
                                     </section>
                                 </section>
@@ -166,39 +265,43 @@ const EditPackage = (props) => {
 
                                 <section id="add-image-section">
 
-                                    {/* I didnt like how the button looked now how it wasnt customizable so I made this one 
-                                    <ImageInput uploadImage={uploadImage} name={"Before"} stage={stage} beforeBttn={true} />
-                                    <ImageInput uploadImage={uploadImage} name={"After"} stage={stage} beforeBttn={false} /> */}
+                                    <div className="columns">
+                                        <button type="button" onClick={prevPair}>&lt;</button>
+                                        <button type="button" onClick={nextPair}>&gt;</button>
+                                    </div>
 
-
-                                    {images.length >= 1 ? images.map(pair => {
-                                    return    pair.map(src => {
-                                            const path = "http://localhost:3001/images/portfolio/";
-                                            console.log("Creating <GalleryImage /> with before: " + path + src[1] + " and after: " + path + src[0]);
-                                         return   <GalleryImage before={path + src[1]} after={path + src[0]} />
-                                        })
-                                    }) : ("")}
-
+                                   
+                                    <h3>Before Image</h3>
+                                    {/* --- MODIFIED IMAGE SRC --- */}
+                                    <img 
+                                        id="before-img" 
+                                        src={images[pairNum] ? getImagePath(images[pairNum][0]) : ""} 
+                                        alt="before" 
+                                    />
+                                    <ImageInput uploadImage={(e) => handleImageChange(e, 0)} name={"Before"} stage={true} beforeBttn={true} />
+                                   
+                                  
+                                    <h3>After Image</h3>
+                                    {/* --- MODIFIED IMAGE SRC --- */}
+                                    <img 
+                                        id="after-img" 
+                                        src={images[pairNum] ? getImagePath(images[pairNum][1]) : ""} 
+                                        alt="after" 
+                                    />
+                                     <ImageInput uploadImage={(e) => handleImageChange(e, 1)} name={"After"} stage={false} beforeBttn={false} />
+                                    
+                                    {/* Test Images is a function, call it if you want the logs to run */}
+                                    {/* {testImages()} */} 
 
                                 </section>
 
                             </section>
-
-
-
-
-
                         </form>
                     </div>
                 </div>
             </div>
         </>
-
-
-
     );
-
-
 };
 
 export default EditPackage;

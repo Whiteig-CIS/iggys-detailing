@@ -13,9 +13,8 @@ const Header = () => {
 
     return (
         <header className="columns" id="header">
-            <div className="one"><LogoBanner menuOpen={menuOpen} onToggleMenu={toggleMenu} /></div>
-            <div id="main-nav-container" className={`four ${menuOpen? "" : "hide-small"}`}><MainNav /></div>
-            <div id="header-book-bttn-container" className="one hide-small"> <BookNow /> </div>
+            <div className="one-sixth"><LogoBanner menuOpen={menuOpen} onToggleMenu={toggleMenu} /></div>
+            <div id="main-nav-container" className={`${menuOpen? "" : "hide-small"}`}><MainNav /></div>
         </header>
     );
 };
