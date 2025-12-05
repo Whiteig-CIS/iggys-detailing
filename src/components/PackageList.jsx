@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./../css/Package.css";
 import Package from "./Package";
-import AddPackage from "./AddPackage";
+import AddPackage from "./addPackage";
 
 const PackageList = (props) => {
   const [packages, setPackages] = useState([]);
@@ -34,8 +34,8 @@ const PackageList = (props) => {
   useEffect(() => {
     const loadPackages = async () => {
       try {
-        //const response = await axios.get("https://detailing-server.onrender.com/api/packages"); // RENDER
-        const response = await axios.get("http://localhost:3001/api/packages");// --------------- // LOCAL
+        const response = await axios.get("https://detailing-server.onrender.com/api/packages"); // RENDER
+       // const response = await axios.get("http://localhost:3001/api/packages");// --------------- // LOCAL
 
         const startIndex = props.end ? parseInt(props.num) : 0;// ------------------------------- // loads a certain amount of packages
         const endIndex = props.end ? parseInt(props.end) : parseInt(props.num);

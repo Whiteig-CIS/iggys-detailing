@@ -8,7 +8,7 @@ const DeleteDialog = (props) => {
         event.preventDefault();
         event.stopPropagation();
         const response = await fetch(
-            `http://localhost:3001/api/packages/${props._id}`,
+            `https://detailing-server.onrender.com/api/packages/${props._id}`,
             {
                 method: "DELETE",
             }

@@ -28,7 +28,7 @@ const EditPackage = (props) => {
     const [pairNum, setPairNum] = useState(0);
 
     // Helper function to determine the correct image source
-    const path = "http://localhost:3001/images/portfolio/";
+    const path = "https://detailing-server.onrender.com/images/portfolio/";
     
 
     const getImagePath = (fileOrName) => {
@@ -159,7 +159,7 @@ const EditPackage = (props) => {
 
 
         const response = await fetch(
-            `http://localhost:3001/api/packages/${props._id}`,
+            `https://detailing-server.onrender.com/api/packages/${props._id}`,
             {
                 method: "PUT",
                 body: formData,
