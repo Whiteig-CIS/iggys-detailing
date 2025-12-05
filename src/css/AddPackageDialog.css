@@ -150,7 +150,7 @@
 
 
 
-#add-submit-div button:hover , .delete-button:hover{
+#add-submit-div button:hover , .delete-button:hovers{
     background: var(--accent-color); /* Accent on hover */
 }
 
