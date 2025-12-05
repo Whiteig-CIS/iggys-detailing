@@ -10,7 +10,7 @@ const EditPackage = (props) => {
         _id: props._id,
         vehicle_type: props.vehicle_type,
         teir: props.teir,
-        price: props.price,
+        starting_price: props.starting_price,
         summary: props.summary,
         images: props.images,
         preview_image: props.preview_image,
@@ -20,7 +20,14 @@ const EditPackage = (props) => {
 
     const [result, setResult] = useState("");
 
+    const [images, setImages] = useState([props.images]);
 
+    const gallerizeImages = () => {
+        for (let i = 0; i < images.length; ++i) {
+            //   const galleryImg =  <GalleryImage before={images[i][0]} after={images=[i][1]};
+            //  images[i] = galleryImg;
+        }
+    }
 
 
     const handleChange = (event) => {
@@ -33,19 +40,20 @@ const EditPackage = (props) => {
         //Gonna be tough
     }
 
-    const onSubmit = async (event) => { 
+    const onSubmit = async (event) => {
         event.preventDefault();
         setResult("sending...");
         const formData = new FormData(event.target);
 
-         const interior_services = formData.getAll("interior_service");
+        const interior_services = formData.getAll("interior_service");
 
         const exterior_services = formData.getAll("exterior_service");
+
 
         formData.delete("interior_service");
         formData.delete("exterior_service");
 
-         interior_services.forEach(service => {
+        interior_services.forEach(service => {
             formData.append("interior_services", service);
         });
 
@@ -53,17 +61,17 @@ const EditPackage = (props) => {
             formData.append("exterior_services", service);
         });
 
-console.log([...formData.entries()]);
         const response = await fetch(
-           {/*`http://localhost:3001/api/packages/${props._id}`,*/} 
-           `https://detailing-server.onrender.com/api/packages/${props._id}`,
+            `http://localhost:3001/api/packages/${props._id}`,
+
             {
                 method: "PUT",
                 body: formData,
             }
         );
 
-        if(response.status === 200) {
+        console.log(response);
+        if (response.status === 200) {
             setResult("Package Loaded");
             event.target.reset();
             props.editPackage(await response.json());
@@ -74,27 +82,6 @@ console.log([...formData.entries()]);
         }
     };
 
-    const handleServiceChange = (event, serviceType, index) => {
-        const { value } = event.target;
-
-        setInputs(prevInputs => {
-            const services = [...prevInputs[serviceType]];
-            services[index] = value;
-            return {
-                ...prevInputs,
-                [serviceType]: services,
-            };
-        });
-    };
-
-    const addService = (serviceType) => {
-        setInputs(prevInputs => ({
-            ...prevInputs,
-            [serviceType]: [...prevInputs[serviceType], ""],
-        }));
-    };
-
-    
     return (
         <>
             <div id="edit-dialog" class="w3-modal">
@@ -110,10 +97,11 @@ console.log([...formData.entries()]);
 
 
                             <div id="add-title-result" className="columns">
-                                <h2>Add Package</h2>
+                                <h2>Edit Package</h2>
                                 <div id="add-submit-div">
                                     <button type="submit">Submit</button>
                                 </div>
+
                                 <div>{result}</div>
 
                             </div>
@@ -129,7 +117,7 @@ console.log([...formData.entries()]);
                                     </div>
 
                                     <div>
-                                        <input type="number" id="starting_price" name="starting_price" placeholder="Starting Price" min="20" onChange={handleChange} value={inputs.price || ""} required></input>
+                                        <input type="number" id="starting_price" name="starting_price" placeholder="Starting Price" min="20" onChange={handleChange} value={inputs.starting_price || ""} required></input>
                                     </div>
                                 </div>
 
@@ -150,12 +138,11 @@ console.log([...formData.entries()]);
                                             <AddService
                                                 service="interior_service"
                                                 textVal={service}
+                                                handleChange={handleChange}
                                             />
                                         ))}
 
-                                        <div id="add-more-bttn-container">
-                                            <button type="button" onClick={() => addService('interior_services')}>+</button>
-                                        </div>
+
                                     </section>
 
 
@@ -167,13 +154,11 @@ console.log([...formData.entries()]);
                                             <AddService
                                                 service="exterior_service"
                                                 textVal={service}
-                                                
+                                                handleChange={handleChange}
+
                                             />
                                         ))}
 
-                                        <div id="add-more-bttn-container">
-                                            <button type="button" onClick={() => addService('exterior_services')}>+</button>
-                                        </div>
                                     </section>
                                 </section>
 
@@ -184,6 +169,16 @@ console.log([...formData.entries()]);
                                     {/* I didnt like how the button looked now how it wasnt customizable so I made this one 
                                     <ImageInput uploadImage={uploadImage} name={"Before"} stage={stage} beforeBttn={true} />
                                     <ImageInput uploadImage={uploadImage} name={"After"} stage={stage} beforeBttn={false} /> */}
+
+
+                                    {images.length >= 1 ? images.map(pair => {
+                                    return    pair.map(src => {
+                                            const path = "http://localhost:3001/images/portfolio/";
+                                            console.log("Creating <GalleryImage /> with before: " + path + src[1] + " and after: " + path + src[0]);
+                                         return   <GalleryImage before={path + src[1]} after={path + src[0]} />
+                                        })
+                                    }) : ("")}
+
 
                                 </section>
 

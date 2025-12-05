@@ -100,8 +100,8 @@ const AddPackage = (props) => {
         for (let pair of formData.entries()) {
             console.log(pair[0] + ':', pair[1]);
         }
-        const response = await fetch("https://detailing-server.onrender.com/api/packages", {
-        //const response = await fetch("http://localhost:3001/api/packages", {
+        //const response = await fetch("https://detailing-server.onrender.com/api/packages", {
+        const response = await fetch("http://localhost:3001/api/packages", {
             "method": "POST",
             "body": formData
         });

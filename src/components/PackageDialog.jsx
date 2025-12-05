@@ -30,7 +30,7 @@ const PackageDialog = (props) => {
                   <h1>Detail</h1>
                 </div>
 
-                <h3>Starting Price: ${props.price}</h3>
+                <h3>Starting Price: ${props.starting_price}</h3>
                 </div>
               </header>
 
